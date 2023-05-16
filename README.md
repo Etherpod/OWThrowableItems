@@ -1,5 +1,5 @@
 # Outer Wilds - Throwable Items Mod
-![image](https://github.com/VioVayo/OWThrowableItems/assets/127029039/304324df-214a-453f-8123-34c314bdefa0)
+![image](https://github.com/VioVayo/OWThrowableItems/assets/127029039/e4497f7a-9036-49b1-9d39-a49052d16149)
 
 While holding an item, <b>double tap</b> the `Interact` button to drop / let go of it.  
 This works in 0g environments.  
