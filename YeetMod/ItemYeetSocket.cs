@@ -46,7 +46,7 @@ namespace YeetMod
             sectorDetector.SetOccupantType(DynamicOccupant.Environment);
             Locator.GetPlayerSectorDetector().AddDetectorToAllOccupiedSectors(sectorDetector);
 
-            attachedItem.transform.SetParent(null, true);
+            attachedItem.transform.parent = null;
             gameObject.SetActive(false);
             gameObject.AddComponent<ImpactSensor>();
             var objectImpactAudio = gameObject.AddComponent<ObjectImpactAudio>();
@@ -54,7 +54,7 @@ namespace YeetMod
             objectImpactAudio._maxPitch = 0.6f;
             objectImpactAudio.Reset();
             gameObject.SetActive(true);
-            attachedItem.transform.SetParent(transform, false);
+            attachedItem.transform.parent = transform;
 
             attachedItem.onPickedUp += OnPickUpItem;
 
