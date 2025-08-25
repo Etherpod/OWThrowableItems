@@ -8,6 +8,7 @@ namespace YeetMod
 
         private OWRigidbody owRigidbody;
         private GameObject detectorObj = new("YeetDetector");
+        private GameObject soundObj = new("YeetImpactAudio");
         private SectorDetector sectorDetector;
         private OWItem attachedItem;
         private bool switchedFromInteractible;
@@ -46,15 +47,16 @@ namespace YeetMod
             sectorDetector.SetOccupantType(DynamicOccupant.Environment);
             Locator.GetPlayerSectorDetector().AddDetectorToAllOccupiedSectors(sectorDetector);
 
-            attachedItem.transform.parent = null;
-            gameObject.SetActive(false);
             gameObject.AddComponent<ImpactSensor>();
-            var objectImpactAudio = gameObject.AddComponent<ObjectImpactAudio>();
+
+            soundObj.transform.parent = attachedItem.transform;
+            soundObj.transform.localPosition = Vector3.zero;
+            soundObj.SetActive(false);
+            var objectImpactAudio = soundObj.AddComponent<ObjectImpactAudio>();
             objectImpactAudio._minPitch = 0.4f;
             objectImpactAudio._maxPitch = 0.6f;
             objectImpactAudio.Reset();
-            gameObject.SetActive(true);
-            attachedItem.transform.parent = transform;
+            soundObj.SetActive(true);
 
             attachedItem.onPickedUp += OnPickUpItem;
 
@@ -254,6 +256,7 @@ namespace YeetMod
             if (switchedFromInteractible) attachedItem.gameObject.layer = LayerMask.NameToLayer("Interactible");
             Destroy(gameObject);
             Destroy(detectorObj);
+            Destroy(soundObj);
         }
     }
 }
